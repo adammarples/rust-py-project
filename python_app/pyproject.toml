@@ -1,0 +1,16 @@
+[project]
+name = "python-app"
+version = "0.1.0"
+description = "Python application using rust-core text analysis"
+requires-python = ">=3.11"
+dependencies = [
+    "rust-core",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.0.0",
+]
+
+[tool.uv.sources]
+rust-core = { path = "../rust_core", editable = true }
