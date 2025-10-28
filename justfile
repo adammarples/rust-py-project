@@ -19,7 +19,7 @@ setup-test-python:
 setup: setup-rust setup-rust-python
     @echo "✓ Setup rust and rust-python complete"
 
-build-develop:
+dev:
     cd {{justfile_directory()}}/rust_core && uv run maturin develop
     cd {{justfile_directory()}}/python_app && uv sync
 

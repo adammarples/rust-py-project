@@ -11,10 +11,8 @@ rust-py-project/
 │   ├── Cargo.toml               # Rust dependencies
 │   ├── pyproject.toml           # Maturin build config
 │   ├── .python-version          # Python version (3.11)
-│   ├── src/
-│   │   └── lib.rs               # TextAnalyzer implementation with PyO3
-│   └── tests/
-│       └── test_rust.rs         # Rust integration tests
+│   └── src/
+│       └── lib.rs               # TextAnalyzer implementation with PyO3
 └── python_app/                   # Python project using rust_core
     ├── pyproject.toml           # Python dependencies + local rust_core
     ├── .python-version          # Python version (3.11)
@@ -37,23 +35,15 @@ The `rust_core` package provides a `TextAnalyzer` class with:
 
 ## Quick Start
 
-All operations use the `justfile`:
-
 ```bash
-# Initial setup (installs Rust, maturin, Python deps)
+# Initial setup (installs Rust, maturin, rust_core deps)
 just setup
 
 # Build and install in development mode
 just dev
 
-# Run all tests (Rust + Python)
+# Run all tests
 just test
-
-# Run only Python tests
-just test-python
-
-# Run only Rust tests
-just test-rust
 
 # Format all code
 just fmt
@@ -91,33 +81,35 @@ print(top_words)  # [('the', 2), ('brown', 1), ('dog', 1)]
 ## Available Just Commands
 
 **Setup:**
-- `just setup` - Full project setup
-- `just setup-rust` - Install Rust toolchain
-- `just setup-maturin` - Install maturin
-- `just setup-python` - Sync Python dependencies
+- `just setup` - Install Rust and rust_core dependencies
+- `just setup-rust` - Install/update Rust toolchain
+- `just setup-rust-python` - Install maturin and rust_core dependencies
+- `just setup-test-python` - Sync python_app dependencies
 
-**Development:**
+**Build:**
 - `just dev` - Build and install in development mode
-- `just build-rust` - Build release wheel
-- `just install-rust` - Install built wheel
+- `just build-release` - Build optimized release wheel
 
 **Testing:**
 - `just test` - Run all tests
-- `just test-rust` - Run Rust unit tests
-- `just test-python` - Run Python pytest tests
-- `just test-coverage` - Run Python tests with coverage
 
 **Code Quality:**
 - `just fmt` - Format all code
+- `just fmt-rust` - Format Rust code
+- `just fmt-python` - Format Python code
 - `just lint` - Lint all code
+- `just lint-rust` - Lint Rust code
+- `just lint-python` - Lint Python code
 - `just check` - Full health check (format + lint + test)
 
 **Cleanup:**
 - `just clean` - Remove all build artifacts
+- `just clean-rust` - Remove Rust build artifacts
+- `just clean-python` - Remove Python artifacts
 - `just rebuild` - Clean and rebuild from scratch
 
 **Utilities:**
-- `just tree` - Show project structure
+- `just inspect` - Show project structure
 
 ## Requirements
 
